@@ -12,12 +12,36 @@ app.use(bodyParser.json())
 
 app.use('/', express.static(path.join(__dirname, '../public')))
 
-// your API calls
-
-// example API call
-app.get('/apod', async (req, res) => {
+//NASA mars rover curiosity API call
+app.get('/curiosity', async (req, res) => {
     try {
-        let image = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${process.env.API_KEY}`)
+        const today = new Date()
+        console.log(today)
+        let image = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/latest_photos?api_key=${process.env.API_KEY}`)
+            .then(res => res.json())
+        res.send({ image })
+    } catch (err) {
+        console.log('error:', err);
+    }
+})
+//NASA mars rover spirit API call
+app.get('/spirit', async (req, res) => {
+    try {
+        const today = new Date()
+        console.log(today)
+        let image = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/latest_photos?api_key=${process.env.API_KEY}`)
+            .then(res => res.json())
+        res.send({ image })
+    } catch (err) {
+        console.log('error:', err);
+    }
+})
+//NASA mars rover opportunity API call
+app.get('/opportunity', async (req, res) => {
+    try {
+        const today = new Date()
+        console.log(today)
+        let image = await fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/latest_photos?api_key=${process.env.API_KEY}`)
             .then(res => res.json())
         res.send({ image })
     } catch (err) {
@@ -25,4 +49,4 @@ app.get('/apod', async (req, res) => {
     }
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Mars rover app listening on port ${port}!`))
