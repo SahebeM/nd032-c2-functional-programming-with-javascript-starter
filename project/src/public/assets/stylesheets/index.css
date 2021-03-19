@@ -32,7 +32,7 @@ img {
   }
 }
 
-/* -------------------  LARGE SCREENS  -------------- */
+/* -------------------  LARGE SCREENS  --------------  */
 @media screen and (min-width: 1824px) {
   img {
     width: 1024px;
